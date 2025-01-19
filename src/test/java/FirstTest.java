@@ -31,8 +31,9 @@ public class FirstTest{
     @DisplayName ("Первый тест")
     public void enterText() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-    driver = new ChromeDriver(options);
+        options.addArguments("--headless");
+        WebDriver driver = new ChromeDriver(options);
+    //driver = new ChromeDriver(options);
     driver.get("https://otus.home.kartushin.su/training.html");
     WebElement element = driver
             .findElement(By.id("textInput"));
