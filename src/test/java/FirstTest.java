@@ -55,7 +55,6 @@ public class FirstTest{
                 .findElement(By.id("openModalBtn"));
         element.click();
         element.isDisplayed();
-      // Assertions.assertTrue(element.isDisplayed());
         logger.info("Тест #2 пройден");
 
     }
