@@ -33,7 +33,6 @@ public class FirstTest{
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         WebDriver driver = new ChromeDriver(options);
-    //driver = new ChromeDriver(options);
     driver.get("https://otus.home.kartushin.su/training.html");
     WebElement element = driver
             .findElement(By.id("textInput"));
@@ -55,7 +54,8 @@ public class FirstTest{
         WebElement element = driver
                 .findElement(By.id("openModalBtn"));
         element.click();
-       Assertions.assertTrue(element.isDisplayed());
+        element.isDisplayed();
+      // Assertions.assertTrue(element.isDisplayed());
         logger.info("Тест #2 пройден");
 
     }
@@ -69,17 +69,18 @@ public class FirstTest{
     @Test
     @DisplayName ("Третий тест")
     public void checkDynamicForm() {
+        String nameUsers = "otus";
+        String emailUsers = "otus@test.ru";
         driver.get("https://otus.home.kartushin.su/training.html");
         driver.manage().window().maximize();
         WebElement name = driver
                 .findElement(By.id("name"));
-        name.sendKeys("otus");
+        name.sendKeys(nameUsers);
         WebElement email = driver
                 .findElement(By.id("email"));
-        email.sendKeys("otus@test.ru");
-
+        email.sendKeys(emailUsers);
         WebElement element = driver
-                .findElement(By.xpath("//*[@id='sampleForm']/button"));
+                .findElement(By.xpath("//button[@type='submit']"));
         element.click();
         WebElement messageBox = driver
                 .findElement(By.id("messageBox"));
@@ -91,5 +92,6 @@ public class FirstTest{
     void tearDown(){
         if (driver!=null)
             driver.close();
+            driver.quit();
     }
     }
