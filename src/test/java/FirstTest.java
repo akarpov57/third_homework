@@ -49,8 +49,8 @@ public class FirstTest{
     @Test
     @DisplayName ("Второй тест")
     public void clickPopUp() {
-        driver.get("https://otus.home.kartushin.su/training.html");
-        driver.manage().window().fullscreen();
+       driver.get("https://otus.home.kartushin.su/training.html");
+      driver.manage().window().fullscreen();
         WebElement element = driver
                 .findElement(By.id("openModalBtn"));
         element.click();
@@ -91,6 +91,6 @@ public class FirstTest{
     void tearDown(){
         if (driver!=null)
             driver.close();
-            driver.quit();
+         //   driver.quit();
     }
     }
