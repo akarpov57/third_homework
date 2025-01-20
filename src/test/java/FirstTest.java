@@ -8,37 +8,37 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class FirstTest{
+public class FirstTest {
     private static final Logger logger = LogManager.getLogger(FirstTest.class);
     WebDriver driver;
-
     @BeforeAll
-    public static void webDriverInstall(){
+    public static void webDriverInstall() {
         WebDriverManager.chromedriver().setup();
     }
-
     @BeforeEach
     void webDriverStart() {
         driver = new ChromeDriver();
     }
-  /*
-  Открыть Chrome в headless режиме
-Перейти на ресурс
-В В поле ввода текста ввести ОТУС
-Проверить что в Текст соответствует введенному
-   */
+
+    /*
+    Открыть Chrome в headless режиме
+  Перейти на ресурс
+  В В поле ввода текста ввести ОТУС
+  Проверить что в Текст соответствует введенному
+     */
     @Test
-    @DisplayName ("Первый тест")
+    @DisplayName("Первый тест")
     public void enterText() {
+        String text = "ОТУС";
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         WebDriver driver = new ChromeDriver(options);
-    driver.get("https://otus.home.kartushin.su/training.html");
-    WebElement element = driver
-            .findElement(By.id("textInput"));
-    element.sendKeys("ОТУС");
-    Assertions.assertEquals("ОТУС", element.getAttribute("value") );
-    logger.info("Тест #1 пройден");
+        driver.get("https://otus.home.kartushin.su/training.html");
+        WebElement element = driver
+                .findElement(By.id("textInput"));
+        element.sendKeys(text);
+        Assertions.assertEquals("ОТУС", element.getAttribute("value"));
+        logger.info("Тест #1 пройден");
     }
     /*
 Открыть Chrome в режиме киоска
@@ -47,10 +47,10 @@ public class FirstTest{
 Проверить что открылось в модальное окно
   */
     @Test
-    @DisplayName ("Второй тест")
+    @DisplayName("Второй тест")
     public void clickPopUp() {
-       driver.get("https://otus.home.kartushin.su/training.html");
-      driver.manage().window().fullscreen();
+        driver.get("https://otus.home.kartushin.su/training.html");
+        driver.manage().window().fullscreen();
         WebElement element = driver
                 .findElement(By.id("openModalBtn"));
         element.click();
@@ -66,7 +66,7 @@ public class FirstTest{
 Форма отправлена с именем: фыв и email: asdf@sdfg.rt
      */
     @Test
-    @DisplayName ("Третий тест")
+    @DisplayName("Третий тест")
     public void checkDynamicForm() {
         String nameUsers = "otus";
         String emailUsers = "otus@test.ru";
@@ -86,11 +86,9 @@ public class FirstTest{
         Assertions.assertEquals("Форма отправлена с именем: otus и email: otus@test.ru", messageBox.getText());
         logger.info("Тест #3 пройден");
     }
-
     @AfterEach
-    void tearDown(){
-        if (driver!=null)
+    void tearDown() {
+        if (driver != null)
             driver.close();
-         //   driver.quit();
     }
-    }
+}
